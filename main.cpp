@@ -14,9 +14,13 @@ int main(void)
 	Punto p5 = {"p21", 21, 21};
 	Punto p6 = {"p22", 22, 22};
 
-	Punto p6 = {"p30", 30, 30};
-	Punto p7 = {"p31", 31, 31};
-	Punto p8 = {"p32", 32, 32};
+	Punto p7 = {"p30", 30, 30};
+	Punto p8 = {"p31", 31, 31};
+	Punto p9 = {"p32", 32, 32};
+
+	p1.imprimir();
+	
+	cout << p1.distancia(p2) << endl;
 
 	return 0;
 }

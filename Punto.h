@@ -9,7 +9,7 @@ class Punto
 public:
 	Punto();
 	Punto(int x, int y);
-	Punto(char* nombre, int x, int y);
+	Punto(const char* nombre, int x, int y);
 	Punto(const Punto &punto);
 	~Punto();
 
@@ -21,7 +21,7 @@ public:
 	void setX(int x);
 	void setY(int y);
 
-	float distancia(Punto p);
+	float distancia(Punto &p);
 
 	void imprimir();
 };

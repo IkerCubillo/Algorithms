@@ -20,7 +20,7 @@ Punto::Punto(int x, int y)
 }
 
 
-Punto::Punto(char* nombre, int x, int y)
+Punto::Punto(const char* nombre, int x, int y)
 {	
 	this->nombre = new char[strlen(nombre)+1];
     strcpy(this->nombre, nombre);
@@ -78,8 +78,10 @@ void Punto::setY(int y)
 }
 
 
-float Punto::distancia(Punto p)
+float Punto::distancia(Punto &p)
 {
+	this->imprimir();
+	p.imprimir();
 	return sqrt(((p.x - this->x)*(p.x - this->x)) + ((p.y - this->y)*(p.y - this->y)));
 }
 
