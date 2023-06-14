@@ -66,32 +66,32 @@ Cluster::~Cluster()
 
 char* Cluster::getNombre() const
 {
-    
+    return this->nombre;
 }
 
 Punto* Cluster::getCentroide() const
 {
-    
+    return this->centroide;
 }
 
 int Cluster::getNumPuntos() const
 {
-    
+    return this->numPuntos;
 }
 
 Punto* Cluster::getArrayPuntos() const
 {
-    
+    return this->arrayPuntos;
 }
 
 float Cluster::getMedia() const
 {
-    
+    return this->media;
 }
 
 float Cluster::getVarianza() const
 {
-    
+    return this->varianza;
 }
 
 
@@ -116,15 +116,30 @@ void Cluster::setArrayPuntos(Punto* arrayPuntos)
 }
 
     
-float Cluster::calcMedia()
+void Cluster::calcMedia()
 {
-    
+    float media = 0;
+
+    for (int i = 0; i < this->numPuntos; i++)
+    {
+        media += this->centroide->distancia(arrayPuntos[i]);
+    }
+
+    media = 
+
+    this->media = media;
 }
 
 
-float Cluster::calcVarianza()
+void Cluster::calcVarianza()
 {
-    
+    float var = 0;
+
+    for (int i = 0; i < this->numPuntos; i++)
+    {
+        media += this->centroide->distancia(arrayPuntos[i]);
+    }
+    this->media = media;
 }
 
 

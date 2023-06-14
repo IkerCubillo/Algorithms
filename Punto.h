@@ -3,27 +3,33 @@
 
 class Punto
 {	
-	char* nombre;
 	int x, y;
 
 public:
 	Punto();
 	Punto(int x, int y);
-	Punto(const char* nombre, int x, int y);
 	Punto(const Punto &punto);
 	~Punto();
 
-	char* getNombre() const;
 	int getX() const;
 	int getY() const;
 
-	void setNombre(char* nombre);
 	void setX(int x);
 	void setY(int y);
 
 	float distancia(Punto &p);
 
 	void imprimir();
+
+	Punto operator+ (const Punto& p)const;
+	Punto operator- (const Punto& p)const;
+
+    Punto& operator+= (const Punto& p);
+    Punto& operator-= (const Punto& p);
+
+    Punto& operator/ (int divisor)const;
+
+	Punto& operator= (const Punto& p);
 };
 
 #endif /* PUNTO_H_ */

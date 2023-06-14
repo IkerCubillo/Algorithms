@@ -7,47 +7,26 @@ using namespace std;
 
 Punto::Punto()
 {	
-	this->nombre = NULL;
 	this->x = 0;
 	this->y = 0;
 }
 
 Punto::Punto(int x, int y)
 {
-	this->nombre = NULL;
-	this->x = x;
-	this->y = y;
-}
-
-
-Punto::Punto(const char* nombre, int x, int y)
-{	
-	this->nombre = new char[strlen(nombre)+1];
-    strcpy(this->nombre, nombre);
-
 	this->x = x;
 	this->y = y;
 }
 
 Punto::Punto(const Punto &punto)
 {
-    this->nombre = new char[strlen(punto.nombre)+1];
-    strcpy(this->nombre, punto.nombre);
-
-	this->x = x;
+    this->x = x;
 	this->y = y;
 }
 
 Punto::~Punto()
 {
-	delete[] this->nombre;
 }
 
-
-char* Punto::getNombre() const
-{
-	return this->nombre;
-}
 
 int Punto::getX() const
 {
@@ -59,13 +38,6 @@ int Punto::getY() const
 	return this->y;
 }
 
-
-void Punto::setNombre(char* nombre)
-{
-	delete[] this->nombre;
-	this->nombre = new char[strlen(nombre)+1];
-    strcpy(this->nombre, nombre);
-}
 
 void Punto::setX(int x)
 {
@@ -87,5 +59,70 @@ float Punto::distancia(Punto &p)
 
 void Punto::imprimir()
 {
-	cout << this->nombre << " (" << this->x << ", " << this->y << ")" << endl;
+	cout << "(" << this->x << ", " << this->y << ")" << endl;
+}
+
+
+Punto Punto::operator+ (const Punto& p)const
+{
+    int x = this->getX()+p.getX();
+    int y = this->getY()+p.getY();
+
+    Punto resultado (x, y);
+
+    return resultado;
+}
+
+Punto Punto::operator+ (const Punto& p)const;
+	Punto Punto::operator- (const Punto& p)const;
+	
+    Punto& Punto::operator+= (const Punto& p);
+    Punto& Punto::operator-= (const Punto& p);
+
+Punto& Punto::operator/ (int divisor)const
+{
+    this->x = this->x/divisor;
+    this->x = this->x/divisor;
+
+}
+
+Punto& Punto::operator= (const Punto& p)
+{
+    delete[] this->nombre;
+    this->nombre = new char[strlen(p.nombre)+1];
+    strcpy(this->nombre, p.nombre);
+
+	this->x = x;
+	this->y = y;
+}
+
+Punto3D& Punto3D::operator+= (const Punto3D& p)
+{
+    this->setX(this->getX()+p.getX());
+    this->setY(this->getY()+p.getY());
+    this->setZ(this->getZ()+p.getZ());
+
+     return *this;
+}
+
+Punto3D Punto3D::operator* (const Punto3D& punto2)const
+{
+    int x = this->getX()*punto2.getX();
+    int y = this->getY()*punto2.getY();
+    int z = this->getZ()*punto2.getZ();
+
+    Punto3D resultado (x, y, z);
+
+    return resultado;
+}
+
+Punto3D& Punto3D::operator* (int escalar)const
+{
+    int x = (this->getX()*escalar);
+    int y = (this->getY()*escalar);
+    int z = (this->getZ()*escalar);
+
+    Punto3D resultado (x, y, z);
+    
+    return resultado;
 }
