@@ -19,7 +19,7 @@ KMeans::KMeans(int numPuntos, Punto* arrayPuntos, int k, Cluster* arrayClusters)
     this->arrayPuntos = arrayPuntos;
     this->k = k;
 
-    this->arrayClusters;
+    this->arrayClusters = arrayClusters;
 }
 
 KMeans::KMeans(const KMeans &km)

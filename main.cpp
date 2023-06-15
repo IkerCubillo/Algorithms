@@ -18,11 +18,22 @@ int main(void)
 	Punto p8 = {31, 31};
 	Punto p9 = {32, 32};
 
-	Punto* a1 = new Punto[3];
+Punto* a1 = new Punto[9];
     a1[0] = p1; a1[1] = p2; a1[2] = p3;
+	a1[3] = p4; a1[4] = p5; a1[5] = p6;
+	a1[6] = p7; a1[7] = p8; a1[8] = p9;
 
-	p1.imprimir();
-	a1[1].imprimir();
+
+	Cluster* cl1 = new Cluster("Cluster 1", Punto(0,0));
+	Cluster* cl2 = new Cluster("Cluster 2", Punto(19,19));
+	Cluster* cl3 = new Cluster("Cluster 3", Punto(23,23));
+
+	Cluster* aCl1 = new Cluster[3];
+    aCl1[0] = *cl1; aCl1[1] = *cl2; aCl1[2] = *cl3;
+
+	KMeans km1 = {9, a1, 3, aCl1};
+	km1.imprimir();
 
 	return 0;
 }
+
