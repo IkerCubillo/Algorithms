@@ -30,6 +30,9 @@ public:
     Punto operator/ (int divisor)const;
 
 	Punto& operator= (const Punto& p);
+
+	bool operator== (const Punto& p)const;
+	bool operator!= (const Punto& p) const;
 };
 
 #endif /* PUNTO_H_ */

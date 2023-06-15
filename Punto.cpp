@@ -114,3 +114,13 @@ Punto& Punto::operator= (const Punto& p)
 
     return *this;
 }
+
+bool Punto::operator== (const Punto& p)const
+{
+    return (this->x == p.x) && (this->y == p.y);
+}
+
+bool Punto::operator!= (const Punto& p)const
+{
+    return !(*this == p);
+}

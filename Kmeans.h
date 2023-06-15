@@ -10,6 +10,8 @@ class KMeans
     int k;
     Cluster* arrayClusters;
 
+    bool modificado;
+
 public:
 	KMeans();
 	KMeans(int numPuntos, Punto* arrayPuntos, int k, Cluster* arrayClusters);
@@ -20,8 +22,10 @@ public:
     Punto* getArrayPuntos() const;
 	int getK() const;
     Cluster* getArrayClusters() const;
+    bool getModificado() const;
 
     void asignacionPuntos();
+    void centroidReCalculation();
 
     void imprimir();
 };
