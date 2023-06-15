@@ -18,7 +18,7 @@ Cluster::Cluster()
     this->varianza = 0;
 }
 
-Cluster::Cluster(char* nombre, Punto centroide)
+Cluster::Cluster(const char* nombre, Punto centroide)
 {
     this->nombre = new char[strlen(nombre)+1];
     strcpy(this->nombre, nombre);
@@ -32,7 +32,7 @@ Cluster::Cluster(char* nombre, Punto centroide)
     this->varianza = 0;
 }
 
-Cluster::Cluster(char* nombre, Punto centroide, int numPuntos, Punto* arrayPuntos)
+Cluster::Cluster(const char* nombre, Punto centroide, int numPuntos, Punto* arrayPuntos)
 {
     this->nombre = new char[strlen(nombre)+1];
     strcpy(this->nombre, nombre);
@@ -77,6 +77,7 @@ Cluster::Cluster(const Cluster &cluster)
 Cluster::~Cluster()
 {
     delete[] nombre;
+    delete[] arrayPuntos;
 }
 
 

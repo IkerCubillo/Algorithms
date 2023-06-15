@@ -17,8 +17,8 @@ class Cluster
 
 public:
 	Cluster();
-    Cluster(char* nombre, Punto centroide);
-	Cluster(char* nombre, Punto centroide, int numPuntos, Punto* arrayPuntos);
+    Cluster(const char* nombre, Punto centroide);
+	Cluster(const char* nombre, Punto centroide, int numPuntos, Punto* arrayPuntos);
 	Cluster(const Cluster &cluster);
 	~Cluster();
 
