@@ -7,36 +7,36 @@ class Cluster
 {	
     char* nombre;
 
-	Punto* centroide;
+	Punto centroide;
 
 	int numPuntos;
 	Punto* arrayPuntos;
 
-    float media;
+    Punto media;
     float varianza;
 
 public:
 	Cluster();
-    Cluster(char* nombre, Punto* centroide);
-	Cluster(char* nombre, Punto* centroide, int numPuntos, Punto* arrayPuntos);
+    Cluster(char* nombre, Punto centroide);
+	Cluster(char* nombre, Punto centroide, int numPuntos, Punto* arrayPuntos);
 	Cluster(const Cluster &cluster);
 	~Cluster();
 
 	char* getNombre() const;
-    Punto* getCentroide() const;
+    Punto getCentroide() const;
 	int getNumPuntos() const;
 	Punto* getArrayPuntos() const;
-    float getMedia() const;
+    Punto getMedia() const;
 	float getVarianza() const;
 
 	void setNombre(char* nombre);
-	void setCentroide(Punto* centroide);
+	void setCentroide(Punto centroide);
 	void setNumPuntos(int numPuntos);
 	void setArrayPuntos(Punto* arrayPuntos);
     
-	float calcMedia();
+	void calcMedia();
 
-    float calcVarianza();
+    void calcVarianza();
 
 	void imprimir();
 };
