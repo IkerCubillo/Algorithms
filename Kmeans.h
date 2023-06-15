@@ -21,6 +21,8 @@ public:
 	int getK() const;
     Cluster* getArrayClusters() const;
 
+    void asignacionPuntos();
+
     void imprimir();
 };
 

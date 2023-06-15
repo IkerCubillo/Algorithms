@@ -24,33 +24,47 @@ KMeans::KMeans(int numPuntos, Punto* arrayPuntos, int k, Cluster* arrayClusters)
 
 KMeans::KMeans(const KMeans &km)
 {
+    this->numPuntos = km.numPuntos;
+    this->arrayPuntos = km.arrayPuntos;
+    this->k = km.k;
 
+    this->arrayClusters = km.arrayClusters;
 }
 
 KMeans::~KMeans()
 {
-
+    delete[] arrayClusters;
+    delete[] arrayPuntos;
 }
 
 
 int KMeans::getNumPuntos() const
 {
-
+    return this->numPuntos;
 }
 
 Punto* KMeans::getArrayPuntos() const
 {
-
+    return this->arrayPuntos;
 }
 
 int KMeans::getK() const
 {
-
+    return this->k;
 }
 
 Cluster* KMeans::getArrayClusters() const
 {
+    return this->arrayClusters;
+}
 
+void KMeans::asignacionPuntos()
+{
+    for (int i = 0; i < this->numPuntos; i++)
+    {
+        /* code */
+    }
+    
 }
 
 void KMeans::imprimir()
