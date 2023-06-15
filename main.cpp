@@ -49,9 +49,10 @@ int main(void)
 	{
 		km1.asignacionPuntos();
 		km1.centroidReCalculation();
+		
+		km1.imprimir();
 	}
 	
-	km1.imprimir();
 
 	return 0;
 }

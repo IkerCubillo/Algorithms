@@ -70,7 +70,12 @@ bool KMeans::getModificado() const
 }
 
 void KMeans::asignacionPuntos()
-{       
+{   
+    for (int j = 0; j < this->k; j++)
+    {   
+        this->arrayClusters[j].setArrayPuntos(NULL, 0);
+    }
+    
     for (int i = 0; i < this->numPuntos; i++)
     {   
         
@@ -78,7 +83,7 @@ void KMeans::asignacionPuntos()
         int nearCluster = 0;
 
         for (int j = 0; j < this->k; j++)
-        {
+        {   
             if (this->arrayClusters[j].getCentroide().distancia(arrayPuntos[i]) < distMin)
             {
                 distMin = this->arrayClusters[j].getCentroide().distancia(arrayPuntos[i]);
