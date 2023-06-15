@@ -27,7 +27,7 @@ public:
     Punto& operator+= (const Punto& p);
     Punto& operator-= (const Punto& p);
 
-    Punto& operator/ (int divisor)const;
+    Punto operator/ (int divisor)const;
 
 	Punto& operator= (const Punto& p);
 };

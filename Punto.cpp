@@ -19,8 +19,8 @@ Punto::Punto(int x, int y)
 
 Punto::Punto(const Punto &punto)
 {
-    this->x = x;
-	this->y = y;
+    this->x = punto.x;
+	this->y = punto.y;
 }
 
 Punto::~Punto()
@@ -99,7 +99,7 @@ Punto& Punto::operator-= (const Punto& p)
     return *this;
 }
 
-Punto& Punto::operator/ (int divisor)const
+Punto Punto::operator/ (int divisor)const
 {
     int x = (this->getX()/divisor);
     int y = (this->getY()/divisor);
@@ -107,11 +107,12 @@ Punto& Punto::operator/ (int divisor)const
     Punto resultado (x, y);
     
     return resultado;
-
 }
 
 Punto& Punto::operator= (const Punto& p)
 {
-	this->x = x;
-	this->y = y;
+	this->x = p.x;
+	this->y = p.y;
+
+    return *this;
 }
