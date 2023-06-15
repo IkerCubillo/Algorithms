@@ -164,12 +164,19 @@ void Cluster::calcVarianza()
 
     varx = varx/numPuntos;
     vary = vary/numPuntos;
-    
+
     this->varianza = varx + vary;
 }
 
 
 void Cluster::imprimir()
 {
-    
+    cout << "Centroide: ";
+    this->centroide.imprimir();
+    cout << "\nPuntos: " << endl;
+
+    for (int i = 0; i < this->numPuntos; i++)
+    {
+        arrayPuntos[i].imprimir();
+    }  
 }
