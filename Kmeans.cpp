@@ -71,8 +71,11 @@ bool KMeans::getModificado() const
 
 void KMeans::asignacionPuntos()
 {   
-    for (int j = 0; j < this->k; j++)
+    cout << "\nIniciando asignacion puntos a clusters..." << endl;
+    
+    for (int j = 0; j < this->k; j++) 
     {   
+        cout << "\t--->" << "Vaciando " << this->getArrayClusters()[j].getNombre() << endl;
         this->arrayClusters[j].setArrayPuntos(NULL, 0);
     }
     
@@ -90,7 +93,7 @@ void KMeans::asignacionPuntos()
                 nearCluster = j;
             }            
         }
-        cout << "Punto: " << i << " anyadido a Cluster: " << nearCluster << endl;
+        cout << "\t--->" << "Punto " << i << " anyadido a  " << this->getArrayClusters()[nearCluster].getNombre() << endl;
         this->arrayClusters[nearCluster].anyadirPunto(this->arrayPuntos[i]);
     }
 }
@@ -98,7 +101,7 @@ void KMeans::asignacionPuntos()
 void KMeans::centroidReCalculation()
 {   
     this->modificado = false;
-    cout << "Iniciando calculo nuevos centroides" << endl;
+    cout << "\nIniciando calculo nuevos centroides" << endl;
 
     for (int i = 0; i < this->k; i++)
     {   
@@ -110,7 +113,12 @@ void KMeans::centroidReCalculation()
             {
                 this->arrayClusters[i].setCentroide(this->arrayClusters[i].getMedia());
                 this->modificado = true;
-            } 
+                cout << "\t--->" << "Nuevo centroide de " << this->getArrayClusters()[i].getNombre() << ": ";
+                this->getArrayClusters()[i].getCentroide().imprimir();
+            } else {
+                    cout << "\t--->" << this->getArrayClusters()[i].getNombre() << " mantiene centroide: ";
+                    this->getArrayClusters()[i].getCentroide().imprimir();
+                }
         }        
     }
     cout << "Finalizado calculo nuevos centroides" << endl;

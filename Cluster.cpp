@@ -186,8 +186,10 @@ void Cluster::calcVarianza()
 
 
 void Cluster::imprimir()
-{
-    cout << "\nCentroide: ";
+{   
+    cout << "\nNombre: " << this->nombre << endl;
+
+    cout << "Centroide: ";
     this->centroide.imprimir();
 
     if (numPuntos >0 )

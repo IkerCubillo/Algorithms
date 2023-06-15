@@ -24,34 +24,23 @@ int main(void)
 	a1[6] = p7; a1[7] = p8; a1[8] = p9;
 
 
-	Cluster* cl1 = new Cluster("Cluster 1", Punto(1,0));
-	Cluster* cl2 = new Cluster("Cluster 2", Punto(4,0));
-	Cluster* cl3 = new Cluster("Cluster 3", Punto(15,0));
+	Cluster* cl1 = new Cluster("Cluster 1", Punto(4,0));
+	Cluster* cl2 = new Cluster("Cluster 2", Punto(20,0));
+	Cluster* cl3 = new Cluster("Cluster 3", Punto(10,0));
 
 	Cluster* aCl1 = new Cluster[3];
     aCl1[0] = *cl1; aCl1[1] = *cl2; aCl1[2] = *cl3;
 
 	KMeans km1 = {9, a1, 3, aCl1};
 
-	// cout << " Media cluster 1 ";
-	// cl1->getMedia().imprimir();
-
-	// cl1->setArrayPuntos(a1,9);
-
-	// cl1->imprimir();
-
-	// cl1->calcMedia();
-
-	// cout << " Media cluster 1 ";
-	// cl1->getMedia().imprimir();
-
 	while (km1.getModificado() == true)
 	{
 		km1.asignacionPuntos();
 		km1.centroidReCalculation();
-		
-		km1.imprimir();
 	}
+
+	cout << "\nAlgoritmo Kmeans finalizado, imprimiendo resultados...";
+	km1.imprimir();
 	
 
 	return 0;
