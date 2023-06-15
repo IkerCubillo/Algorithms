@@ -52,8 +52,6 @@ void Punto::setY(int y)
 
 float Punto::distancia(Punto &p)
 {
-	this->imprimir();
-	p.imprimir();
 	return sqrt(((p.x - this->x)*(p.x - this->x)) + ((p.y - this->y)*(p.y - this->y)));
 }
 

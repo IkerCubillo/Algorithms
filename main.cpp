@@ -32,18 +32,23 @@ int main(void)
     aCl1[0] = *cl1; aCl1[1] = *cl2; aCl1[2] = *cl3;
 
 	KMeans km1 = {9, a1, 3, aCl1};
-	km1.imprimir();
-
-	Punto* a2 = new Punto[3];
-    a2[0] = p1; a2[1] = p2; a2[2] = p3;
-
-	km1.getArrayClusters()[0].setArrayPuntos(a2, 3);
 
 	km1.imprimir();
 
-	km1.getArrayClusters()[0].anyadirPunto(p9);
+	km1.asignacionPuntos();
 
 	km1.imprimir();
+
+	// Punto* a2 = new Punto[3];
+    // a2[0] = p1; a2[1] = p2; a2[2] = p3;
+
+	// km1.getArrayClusters()[0].setArrayPuntos(a2, 3);
+
+	// km1.imprimir();
+
+	// km1.getArrayClusters()[0].anyadirPunto(p9);
+
+	// km1.imprimir();
 
 	return 0;
 }
