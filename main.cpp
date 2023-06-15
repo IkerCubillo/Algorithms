@@ -1,26 +1,28 @@
-#include "Punto.h"
+#include "Kmeans.h"
 
 #include <iostream>
 using namespace std;
 
-
+//g++ *.cpp -o Algorithms.exe
 int main(void)
 {
-	Punto p1 = {"p10", 10, 10};
-	Punto p2 = {"p11", 11, 11};
-	Punto p3 = {"p12", 12, 12};
+	Punto p1 = {10, 10};
+	Punto p2 = {11, 11};
+	Punto p3 = {12, 12};
 
-	Punto p4 = {"p20", 20, 20};
-	Punto p5 = {"p21", 21, 21};
-	Punto p6 = {"p22", 22, 22};
+	Punto p4 = {20, 20};
+	Punto p5 = {21, 21};
+	Punto p6 = {22, 22};
 
-	Punto p7 = {"p30", 30, 30};
-	Punto p8 = {"p31", 31, 31};
-	Punto p9 = {"p32", 32, 32};
+	Punto p7 = {30, 30};
+	Punto p8 = {31, 31};
+	Punto p9 = {32, 32};
+
+	Punto* a1 = new Punto[3];
+    a1[0] = p1; a1[1] = p2; a1[2] = p3;
 
 	p1.imprimir();
-	
-	cout << p1.distancia(p2) << endl;
+	a1[1].imprimir();
 
 	return 0;
 }

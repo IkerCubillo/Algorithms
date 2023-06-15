@@ -21,6 +21,7 @@ public:
 	int getK() const;
     Cluster* getArrayClusters() const;
 
+    void imprimir();
 };
 
 #endif /* KMEANS_H_ */
