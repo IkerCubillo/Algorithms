@@ -27,6 +27,8 @@ public:
     void asignacionPuntos();
     void centroidReCalculation();
 
+    void run();
+
     void imprimir();
 };
 
