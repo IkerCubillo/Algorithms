@@ -42,12 +42,6 @@ Cluster::Cluster(const char* nombre, Punto centroide, int numPuntos, Punto* arra
     this->numPuntos = numPuntos;
 
     this->arrayPuntos = arrayPuntos;
-    // this->arrayPuntos = new Punto[this->numPuntos];
-	// for (int i=0;i<this->numPuntos;i++)
-	// {
-	// 	this->arrayPuntos[i] = arrayPuntos[i];
-	// }
-
     
 
     calcMedia();
@@ -64,11 +58,6 @@ Cluster::Cluster(const Cluster &cluster)
     this->numPuntos = cluster.numPuntos;
 
     this->arrayPuntos = cluster.arrayPuntos;
-    // this->arrayPuntos = new Punto[this->numPuntos];
-	// for (int i=0;i<this->numPuntos;i++)
-	// {
-	// 	this->arrayPuntos[i] = cluster.arrayPuntos[i];
-	// }
 
     this->media = cluster.media;
     this->varianza = cluster.varianza;
@@ -130,12 +119,38 @@ void Cluster::setNumPuntos(int numPuntos)
     this->numPuntos = numPuntos;
 }
 
-void Cluster::setArrayPuntos(Punto* arrayPuntos)
+void Cluster::setArrayPuntos(Punto* arrayPuntos, int numPuntos)
 {
     this->arrayPuntos = arrayPuntos;
+    this->numPuntos = numPuntos;
 }
 
-    
+
+void Cluster::anyadirPunto(Punto nPunto)
+{   
+    Punto* arrayAntiguo = new Punto[this->numPuntos];
+
+    setNumPuntos(this->numPuntos + 1);    
+
+    for (int i = 0; i < this->numPuntos - 1; i++)
+    {
+        arrayAntiguo[i] = this->arrayPuntos[i];
+    }
+
+    delete[] this->arrayPuntos;
+
+    this->arrayPuntos = new Punto[this->numPuntos];
+
+    for (int i = 0; i < this->numPuntos - 1; i++)
+    {
+        this->arrayPuntos[i] = arrayAntiguo[i];
+    }
+
+    this->arrayPuntos[this->numPuntos - 1] = nPunto;
+
+    delete[] arrayAntiguo;
+}   
+
 void Cluster::calcMedia()
 {
     Punto media = {0,0};
@@ -172,12 +187,18 @@ void Cluster::calcVarianza()
 
 void Cluster::imprimir()
 {
-    cout << "Centroide: ";
+    cout << "\nCentroide: ";
     this->centroide.imprimir();
-    cout << "\nPuntos: " << endl;
 
-    for (int i = 0; i < this->numPuntos; i++)
+    if (numPuntos >0 )
     {
-        arrayPuntos[i].imprimir();
-    }  
+        cout << "Puntos: " << endl;
+
+        for (int i = 0; i < this->numPuntos; i++)
+        {
+            arrayPuntos[i].imprimir();
+        }
+    } else {cout << "Sin Puntos" << endl;}
+    
+      
 }

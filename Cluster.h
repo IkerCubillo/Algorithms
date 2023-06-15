@@ -32,11 +32,13 @@ public:
 	void setNombre(char* nombre);
 	void setCentroide(Punto centroide);
 	void setNumPuntos(int numPuntos);
-	void setArrayPuntos(Punto* arrayPuntos);
+	void setArrayPuntos(Punto* arrayPuntos, int numPuntos);
+	
+
+	void anyadirPunto(Punto nPunto);
     
 	void calcMedia();
-
-    void calcVarianza();
+	void calcVarianza();
 
 	void imprimir();
 };
