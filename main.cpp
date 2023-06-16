@@ -1,6 +1,7 @@
 #include "Kmeans.h"
 
 #include <iostream>
+#include <random>
 using namespace std;
 
 //g++ *.cpp -o Algorithms.exe
@@ -50,12 +51,7 @@ Punto* leerArchivoCSV(const std::string& nombreArchivo, int& numPuntos)
         puntos[indice] = punto;
 
         indice++;
-    }
-	for (int i = 0; i < 100; i++)
-	{
-		puntos[i].imprimir();
-	}
-	
+    }	
 
     archivo.close();
 
@@ -88,48 +84,73 @@ void leerConfiguracion(const char* archivo, int* numPuntos, char* direccion, int
     config.close();
 }
 
+int generarNumeroAleatorio(int min, int max)
+{
+    static std::random_device rd;
+    static std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(min, max);
+    return dist(mt);
+}
+
 int main() {
+	cout << "Iniciando programa..." << endl;
+
     int numPuntos;
     char direccion[100];
     int numClusters;
 
+	cout << "\nLeyendo configuracion de programa..." << endl;
+
     leerConfiguracion("config.txt", &numPuntos, direccion, &numClusters);
+	
+	std::cout << "Numero de puntos: " << numPuntos << std::endl;
+    std::cout << "Direccion del archivo: " << direccion << std::endl;
+    std::cout << "Numero de clusters: " << numClusters << std::endl;
 
 	Punto* a1 = new Punto[numPuntos];
 
+	cout << "\nLeyendo archivo CSV y asignando puntos..." << endl;
 	a1 = leerArchivoCSV(direccion, numPuntos);
 
-	// Punto p1 = {1, 0};
-	// Punto p2 = {2, 0};
-	// Punto p3 = {3, 0};
+	// char respuesta[4];
+	// cout << "\nSi desea introducir manualmente los centroides de los clusters escriba YES" << endl;
+	// cout << "Si desea que se introduzcan automaticamente los centroides de los clusters escriba NO" << endl;
+	// cout << "Introduzca respuesta: ";
+	// cin >> respuesta;
 
-	// Punto p4 = {7, 0};
-	// Punto p5 = {8, 0};
-	// Punto p6 = {9, 0};
 
-	// Punto p7 = {11, 0};
-	// Punto p8 = {12, 0};
-	// Punto p9 = {13, 0};
-
+	// int maxX, maxY, minX, minY;
+	// cout << "Escriba un valor maximo para la coordenada X de los centroides: ";
+	// cin >> maxX;
+	// cout << "Escriba un valor minimo para la coordenada X de los centroides: ";
+	// cin >> minX;
+	// cout << "Escriba un valor maximo para la coordenada Y de los centroides: ";
+	// cin >> maxY;
+	// cout << "Escriba un valor minimo para la coordenada Y de los centroides: ";
+	// cin >> minY;
 	
-    // a1[0] = p1; a1[1] = p2; a1[2] = p3;
-	// a1[3] = p4; a1[4] = p5; a1[5] = p6;
-	// a1[6] = p7; a1[7] = p8; a1[8] = p9;
+	// if (!strcmp(respuesta, "YES"))
+	// {
+		
+	// }
 
-	// Punto* a1 = new Punto[100];
-	// int* num;
-	// *num = 100;
-	// cout << "finciona" << endl;
-	// //a1 = leerArchivoCSV("puntos.csv", *num);
+	// int respuesta;
+	// cout << "\nIniciando programa, presione una letra y enter para continuar: ";
+	// cin >> respuesta;
 
-cout << "sigue" << endl;
 
-	Cluster* cl1 = new Cluster("Cluster 1", Punto(50,50));
-	Cluster* cl2 = new Cluster("Cluster 2", Punto(0,0));
-	Cluster* cl3 = new Cluster("Cluster 3", Punto(-50,-50));
+	Cluster* aCl1 = new Cluster[numClusters];
 
-	Cluster* aCl1 = new Cluster[3];
-    aCl1[0] = *cl1; aCl1[1] = *cl2; aCl1[2] = *cl3;
+	char respuesta[4];
+
+	// do
+	// {
+	for (int i = 0; i < numClusters; i++)
+	{	
+		std::string clusterName = "Cluster " + std::to_string(i + 1);
+    	Cluster* cl = new Cluster(clusterName.c_str(), Punto(generarNumeroAleatorio(-100, 100), generarNumeroAleatorio(-100, 100)));
+    	aCl1[i] = *cl;
+	}
 
 	KMeans km1 = {numPuntos, a1, numClusters, aCl1};
 
@@ -142,7 +163,37 @@ cout << "sigue" << endl;
 	cout << "\nAlgoritmo Kmeans finalizado, imprimiendo resultados...";
 	km1.imprimir();
 	
+	float varianzaTotal = 0;
+	cout << "\n---------------------------------\n" << endl; 
+	for (int i = 0; i < numClusters; i++)
+	{	
+		km1.getArrayClusters()[i].calcVarianza();
+		varianzaTotal += km1.getArrayClusters()[i].getVarianza();
+		cout << "\n/////////////////////\n" << endl; 
+		cout << "Nombre: " << km1.getArrayClusters()[i].getNombre() << endl;
+		cout << "Numero de puntos: " << km1.getArrayClusters()[i].getNumPuntos() << endl;
+		cout << "Centroide: "; km1.getArrayClusters()[i].getCentroide().imprimir();
+		cout << "Varianza interna: " << km1.getArrayClusters()[i].getVarianza() << endl;
+	}
+	cout << "\nVarianza Total: " << varianzaTotal << endl;
+	cout << "\n---------------------------------\n" << endl;
+
+		
+	// cout << "\nSi desea repetir el algoritmo escriba YES" << endl;
+	// cout << "Si no lo desea, escriba cualquier respuesta" << endl;
+	// cout << "Introduzca respuesta: ";
+	// cin >> respuesta;
+
+	for (int i = 0; i < numClusters; i++)
+	{
+		delete &km1.getArrayClusters()[i];
+	}
+
+	//} while (!strcmp(respuesta, "YES"));
+
+	delete[] a1;
+
+	cout << "FIN" << endl;
 
 	return 0;
 }
-

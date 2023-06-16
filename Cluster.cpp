@@ -168,14 +168,13 @@ void Cluster::calcMedia()
 
 void Cluster::calcVarianza()
 {
-    float var = 0;
     float varx = 0;
     float vary = 0;
 
     for (int i = 0; i < this->numPuntos; i++)
     {
-        varx += pow(arrayPuntos->getX()-media.getX(),2);
-        vary += pow(arrayPuntos->getY()-media.getY(),2);
+        varx += pow(this->arrayPuntos[i].getX()-this->media.getX(),2);
+        vary += pow(this->arrayPuntos[i].getY()-this->media.getY(),2);
     }
 
     varx = varx/numPuntos;
